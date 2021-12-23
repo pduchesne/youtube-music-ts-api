@@ -69,7 +69,27 @@ export default class YouTubeMusicAuthenticated extends YouTubeMusicGuest impleme
         return this.getLibraryTracksInternal();
     }
 
+    async getHistory(): Promise<ITrackDetail[]> {
+        const response = await this.sendRequest("browse", {
+            browseId: "FEmusic_history",
+        });
+        return this.historyParser.parseHistoryResponse(response);
+    }
+
     private async getLibraryTracksInternal(): Promise<ITrackDetail[]> {
+        const data = {
+            browseId: "FEmusic_liked_videos",
+        };
+        const response = await this.sendRequest("browse", data);
+        const tracksDetailResponse = this.trackParser.parseTracksDetailResponse(response);
+        while (tracksDetailResponse.continuationToken) {
+            const continuation = await this.sendRequest("browse", data, `ctoken=${tracksDetailResponse.continuationToken}&continuation=${tracksDetailResponse.continuationToken}`);
+            this.trackParser.parseTracksDetailContinuation(tracksDetailResponse, continuation);
+        }
+        return tracksDetailResponse.tracks;
+    }
+
+    private async getHistoryInternal(): Promise<ITrackDetail[]> {
         const data = {
             browseId: "FEmusic_liked_videos",
         };

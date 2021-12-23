@@ -6,6 +6,7 @@ import ArtistParser from "../parsers/artist-parser";
 import PlaylistParser from "../parsers/playlist-parser";
 import TrackParser from "../parsers/track-parser";
 import YouTubeMusicContext from "../context";
+import HistoryParser from "../parsers/history-parser";
 
 export default class YouTubeMusicBase {
     hostname: string = "music.youtube.com";
@@ -15,6 +16,7 @@ export default class YouTubeMusicBase {
     albumParser: AlbumParser;
     artistParser: ArtistParser;
     playlistParser: PlaylistParser;
+    historyParser: HistoryParser;
     trackParser: TrackParser;
 
     constructor() {
@@ -22,6 +24,7 @@ export default class YouTubeMusicBase {
         this.artistParser = new ArtistParser();
         this.playlistParser = new PlaylistParser();
         this.trackParser = new TrackParser();
+        this.historyParser = new HistoryParser();
     }
 
     protected generateHeaders(): http.OutgoingHttpHeaders {

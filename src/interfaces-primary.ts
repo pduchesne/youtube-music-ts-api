@@ -91,6 +91,13 @@ export interface IYouTubeMusicAuthenticated extends IYouTubeMusicGuest {
      * @returns A promise that will yield whether or not the operation was successful.
      */
     removeTracksFromPlaylist(playlistId: string, ...tracks: ITrackDetail[]): Promise<boolean>;
+
+    /**
+     * Gets all the tracks in the user's library.
+     *
+     * @returns A promise that will yield an array of all the tracks in the user's library.
+     */
+    getHistory(): Promise<ITrackDetail[]>;
 }
 
 /**
