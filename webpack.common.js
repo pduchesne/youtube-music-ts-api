@@ -17,8 +17,8 @@ module.exports = {
     output: {
         filename: "[name].js",
         sourceMapFilename: "[name].js.map",
-        library: "youtube-music-ts-api",
-        libraryTarget: "umd"
+        //library: "@pduchesne/youtube-music-ts-api",
+        libraryTarget: "commonjs"
     },
     module: {
         rules: [
@@ -51,7 +51,7 @@ module.exports = {
         new DtsBundleWebpack({
             baseDir: "build-dts",
             main: "build-dts/exports.d.ts",
-            name: "youtube-music-ts-api",
+            name: "@pduchesne/youtube-music-ts-api",
             out: "../build/exports.d.ts"
         })
     ]
