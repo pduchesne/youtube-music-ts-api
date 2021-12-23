@@ -44,10 +44,10 @@ module.exports = {
         extensions: [".js", ".ts"]
     },
     plugins: [
-        new webpack.BannerPlugin({
-            banner: "#! /usr/bin/env node",
-            raw: true
-        }),
+        // new webpack.BannerPlugin({
+        //     banner: "#! /usr/bin/env node",
+        //     raw: true
+        // }),
         new DtsBundleWebpack({
             baseDir: "build-dts",
             main: "build-dts/exports.d.ts",
